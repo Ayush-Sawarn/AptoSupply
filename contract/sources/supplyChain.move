@@ -61,6 +61,11 @@ module supplyChain :: Product{
         };
         vector::push_back(&mut manufacturer_products.products, new_product);
     }
+     public fun get_all_products(manufacturer_address: address): vector<Product> acquires ManufacturerProducts {
+        let manufacturer_products = borrow_global<ManufacturerProducts>(manufacturer_address);
+        return vector::copy(&manufacturer_products.products); // Return all products for the given manufacturer
+    }
+
     public fun get_product(manufacturer_address: address, product_id: u64): Option<Product> acquires ManufacturerProducts  {
         // Borrow the global ManufacturerProducts object associated with the manufacturer address
         let manufacturer_products = borrow_global<ManufacturerProducts>(manufacturer_address);
