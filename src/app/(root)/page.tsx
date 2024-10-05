@@ -3,6 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+// Internal Components
+import { useWallet } from "@aptos-labs/wallet-adapter-react";
+import { Card, CardContent } from "@/components/ui/card.tsx";
+import { WalletDetails } from "@/components/aptos/WalletDetails.tsx";
+import { NetworkInfo } from "@/components/aptos/NetworkInfo.tsx";
+import { AccountInfo } from "@/components/aptos/AccountInfo.tsx";
+import { TransferAPT } from "@/components/aptos/TransferAPT.tsx";
+import { MessageBoard } from "@/components/aptos/MessageBoard.tsx";
 
 const manufacturers = [
   {
@@ -37,11 +45,8 @@ const manufacturers = [
   },
 ];
 
-// Internal Components
-// import { useWallet } from "@aptos-labs/wallet-adapter-react";
-
 function App() {
-  // const { connected } = useWallet();
+  const { connected } = useWallet();
 
   return (
     <>
@@ -68,19 +73,20 @@ function App() {
             </div>
           ))}
         </div>
-        {/*{connected && (*/}
-        {/*  <Card>*/}
-        {/*    <CardContent className="flex flex-col gap-10 pt-6">*/}
-        {/*      <WalletDetails />*/}
-        {/*      <NetworkInfo />*/}
-        {/*      <AccountInfo />*/}
-        {/*      <TransferAPT />*/}
-        {/*      <MessageBoard />*/}
-        {/*    </CardContent>*/}
-        {/*  </Card>*/}
-        {/*)}*/}
       </div>
       <div className="hidden lg:block col-span-3 bg-zinc-300 p-5 rounded-lg">Something uninmportant</div>
+
+      {connected && (
+        <Card className="col-span-12">
+          <CardContent className="flex flex-col gap-10 pt-6">
+            <WalletDetails />
+            <NetworkInfo />
+            <AccountInfo />
+            <TransferAPT />
+            <MessageBoard />
+          </CardContent>
+        </Card>
+      )}
     </>
   );
 }
