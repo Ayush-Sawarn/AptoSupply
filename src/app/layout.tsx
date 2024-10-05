@@ -16,8 +16,8 @@ const satoshi = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "NextJS Boilerplate Template",
-  description: "NextJS Boilerplate Template is a...",
+  title: "Brand Name | Aptos Hackathon 2024",
+  description: "Dhinka chika dhinka chika dhinka chika dhinka chika a a a a a a a a",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
