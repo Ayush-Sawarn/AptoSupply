@@ -1,13 +1,13 @@
 "use client";
 
-import { AccountInfo } from "@/components/AccountInfo";
+import { AccountInfo } from "@/components/aptos/AccountInfo.tsx";
 import { Header } from "@/components/Header";
-import { MessageBoard } from "@/components/MessageBoard";
-import { NetworkInfo } from "@/components/NetworkInfo";
-import { TransferAPT } from "@/components/TransferAPT";
-import { WalletDetails } from "@/components/WalletDetails";
+import { MessageBoard } from "@/components/aptos/MessageBoard.tsx";
+import { NetworkInfo } from "@/components/aptos/NetworkInfo.tsx";
+import { TransferAPT } from "@/components/aptos/TransferAPT.tsx";
+import { WalletDetails } from "@/components/aptos/WalletDetails.tsx";
 // Internal Components
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
 
 function App() {
@@ -15,9 +15,11 @@ function App() {
 
   return (
     <>
-      <Header />
+      <div className="p-5 sm:p-12 grid grid-cols-12 gap-5 sm:gap-12">
+        <Header />
+      </div>
       <div className="flex items-center justify-center flex-col">
-        {connected ? (
+        {connected && (
           <Card>
             <CardContent className="flex flex-col gap-10 pt-6">
               <WalletDetails />
@@ -27,10 +29,6 @@ function App() {
               <MessageBoard />
             </CardContent>
           </Card>
-        ) : (
-          <CardHeader>
-            <CardTitle>To get started Connect a wallet</CardTitle>
-          </CardHeader>
         )}
       </div>
     </>

@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 // Internal components
-import { toast } from "@/components/ui/use-toast";
-import { aptosClient } from "@/utils/aptosClient";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { getAccountAPTBalance } from "@/view-functions/getAccountBalance";
-import { transferAPT } from "@/entry-functions/transferAPT";
+import { toast } from "@/components/ui/use-toast.ts";
+import { aptosClient } from "@/utils/aptosClient.ts";
+import { Button } from "@/components/ui/button.tsx";
+import { Input } from "@/components/ui/input.tsx";
+import { getAccountAPTBalance } from "@/view-functions/getAccountBalance.ts";
+import { transferAPT } from "@/entry-functions/transferAPT.ts";
 
 export function TransferAPT() {
   const { account, signAndSubmitTransaction } = useWallet();

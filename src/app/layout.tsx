@@ -1,32 +1,36 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import localFont from "next/font/local";
 
-import { ReactQueryProvider } from "@/components/ReactQueryProvider";
-import { WalletProvider } from "@/components/WalletProvider";
+import { ReactQueryProvider } from "@/components/aptos/ReactQueryProvider.tsx";
+import { WalletProvider } from "@/components/aptos/WalletProvider.tsx";
 import { Toaster } from "@/components/ui/toaster";
-import { WrongNetworkAlert } from "@/components/WrongNetworkAlert";
-import { TopBanner } from "@/components/TopBanner";
+import { WrongNetworkAlert } from "@/components/aptos/WrongNetworkAlert.tsx";
 
 import "./globals.css";
+import Navbar from "@/components/Navbar.tsx";
+
+const satoshi = localFont({
+  src: "../../public/fonts/satoshi/Satoshi-Variable.ttf",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "NextJS Boilerplate Template",
   description: "NextJS Boilerplate Template is a...",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body>
+      <body className={satoshi.className}>
         <WalletProvider>
           <ReactQueryProvider>
+            <div>
+              <Navbar />
+            </div>
             <div id="root">{children}</div>
             <WrongNetworkAlert />
-            <TopBanner />
             <Toaster />
           </ReactQueryProvider>
         </WalletProvider>
