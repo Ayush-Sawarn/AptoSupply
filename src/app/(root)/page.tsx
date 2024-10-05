@@ -60,7 +60,7 @@ function App() {
               <div className="text-xl font-semibold">{item.name}</div>
               <div className="text-zinc-600 mb-12">{item.desc}</div>
               <Link
-                href={"/"}
+                href={`/manufacturer/${item.id}`}
                 className="flex gap-2.5 items-center font-medium text-lg underline absolute bottom-0 left-0"
               >
                 Show products <ArrowRight size={16} className="align-middle" />
