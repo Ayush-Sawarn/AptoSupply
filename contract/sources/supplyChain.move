@@ -8,7 +8,8 @@ module supplyChain :: Product{
     use std::string::String;
 
     struct Manufacturer has store,key,copy {
-        account: address
+        account: address,
+        name: String
     }
     struct Consumer has store {
         account: address,
@@ -25,17 +26,30 @@ module supplyChain :: Product{
     struct ManufacturerProducts  has key{
         products: vector<Product>,
     }
-
-    public fun init_manufacturer(account: &signer) {
+    struct AllManufacturers has key {
+        manufacturers: vector<address>,
+    }
+     public fun init_all_manufacturers(account: &signer) {
+        assert!(!exists<AllManufacturers>(0x1), 3);  // If already initialized, return error 3
+        move_to(account, AllManufacturers {
+            manufacturers: vector::empty<address>(),
+        });
+    }
+    public fun init_manufacturer(account: &signer, manufacturer_name: String) {
         let address = signer::address_of(account);
-        assert!(exists<Manufacturer>(address), 1);
+        assert!(!exists<Manufacturer>(address), 1);
         
         move_to(account, Manufacturer {
-            account: address,
+            account: address,  
+            name: manufacturer_name  
         });
+        let global_manufacturers = borrow_global_mut<AllManufacturers>(0x1);
+        vector::push_back(&mut global_manufacturers.manufacturers, address);
+
+        // Initialize their product list
         init_manufacturer_products(account);
     }
-
+    
     public fun init_manufacturer_products(account: &signer){
         move_to(account,ManufacturerProducts{
             products: vector :: empty<Product>(),
