@@ -1,58 +1,62 @@
-module supplyChain :: Product{
-    use aptos_std::coin::{transfer};
-    use aptos_framework::aptos_coin::AptosCoin;
-    use std :: vector;
-    use std::signer; 
-     use std::option::Option;
+module supplyChain :: Product {
     use std :: option;
+    use std :: vector;
+    use std::option::Option;
+    use std::signer;
     use std::string::String;
+    use aptos_std::coin::transfer;
+    use aptos_framework::aptos_coin::AptosCoin;
 
-    struct Manufacturer has store,key,copy {
+    struct Manufacturer has store, key, copy {
         account: address
     }
+
     struct Consumer has store {
         account: address,
-        purchases: vector<u64>, 
+        purchases: vector<u64>,
     }
-    struct Product has store,drop,copy {
+
+    struct Product has store, drop, copy {
         id: u64,
         name: String,
-        manufacturer : address,
-        batch_number : u64,
-        manufacture_date: u64, 
+        manufacturer: address,
+        batch_number: u64,
+        manufacture_date: u64,
         price: u64
     }
-    struct ManufacturerProducts  has key{
+
+    struct ManufacturerProducts  has key {
         products: vector<Product>,
     }
 
     public fun init_manufacturer(account: &signer) {
         let address = signer::address_of(account);
         assert!(exists<Manufacturer>(address), 1);
-        
+
         move_to(account, Manufacturer {
             account: address,
         });
         init_manufacturer_products(account);
     }
 
-    public fun init_manufacturer_products(account: &signer){
-        move_to(account,ManufacturerProducts{
+    public fun init_manufacturer_products(account: &signer) {
+        move_to(account, ManufacturerProducts {
             products: vector :: empty<Product>(),
         });
     }
-    public fun create_product (
+
+    public fun create_product(
         account: &signer,
-        product_id : u64,
+        product_id: u64,
         product_name: String,
-        batch_number: u64, 
-        manufacture_date: u64, 
+        batch_number: u64,
+        manufacture_date: u64,
         product_price: u64
-    )acquires ManufacturerProducts{
+    ) acquires ManufacturerProducts {
         let manufacturer_address = signer:: address_of(account);
-        let manufacturer_products=borrow_global_mut<ManufacturerProducts>(manufacturer_address);
-        let new_product= Product{
-            id:product_id,
+        let manufacturer_products = borrow_global_mut<ManufacturerProducts>(manufacturer_address);
+        let new_product = Product {
+            id: product_id,
             name: product_name,
             manufacturer: manufacturer_address,
             batch_number: batch_number,
@@ -61,18 +65,22 @@ module supplyChain :: Product{
         };
         vector::push_back(&mut manufacturer_products.products, new_product);
     }
-    public fun get_product(manufacturer_address: address, product_id: u64): Option<Product> acquires ManufacturerProducts  {
+
+    public fun get_product(
+        manufacturer_address: address,
+        product_id: u64
+    ): Option<Product> acquires ManufacturerProducts {
         // Borrow the global ManufacturerProducts object associated with the manufacturer address
         let manufacturer_products = borrow_global<ManufacturerProducts>(manufacturer_address);
-        
+
         // Get a reference to the vector of products
         let products = &manufacturer_products.products;
 
         // Manually loop through the products to find the one with the given product_id
-        let i : u64 = 0;
+        let i: u64 = 0;
         while (i < vector::length(products)) {
             let product = vector::borrow(products, i);
-            
+
             // Check if the current product's ID matches the requested product_id
             if (product.id == product_id) {
                 // Return the found product wrapped in Option::some
@@ -89,10 +97,10 @@ module supplyChain :: Product{
         account: &signer,
         manufacturer_address: address,
         product_id: u64,
-    ) acquires ManufacturerProducts  {
+    ) acquires ManufacturerProducts {
         // Borrow the global ManufacturerProducts object associated with the manufacturer address
         let manufacturer_products = borrow_global_mut<ManufacturerProducts>(manufacturer_address);
-        
+
         // Get a mutable reference to the products vector
         let products = &mut manufacturer_products.products;
 
@@ -103,7 +111,7 @@ module supplyChain :: Product{
         // Loop through the products to find the one with the given product_id
         while (index < vector::length(products)) {
             let product = vector::borrow(products, index);
-            
+
             // Check if the current product's ID matches the requested product_id
             if (product.id == product_id) {
                 found = true; // Set found flag to true
@@ -120,8 +128,6 @@ module supplyChain :: Product{
         transfer<AptosCoin>(account, manufacturer_address, product.price);
         vector::remove(products, index);
     }
-
-
 }
 
 

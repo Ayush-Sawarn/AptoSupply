@@ -10,7 +10,7 @@ export function Header() {
         src={HeaderPic}
         alt={"Header picture"}
         width={1080}
-        className="absolute top-0 left-0 w-full h-full object-cover -z-10 rounded-xl rotate-180"
+        className="absolute top-0 left-0 w-full h-full object-cover -z-10 rounded-xl rotate-180 opacity-25"
       />
       <div className="text-4xl md:text-5xl font-bold leading-normal md:leading-normal">Short line about the brand</div>
       <div className="text-base font-normal max-w-screen-sm">
