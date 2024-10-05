@@ -13,9 +13,8 @@ const Navbar = () => {
       <div className="w-full h-full py-5 flex justify-between items-center border-b border-zinc-700">
         <div className="font-bold text-2xl">Brand&reg;</div>
         <div className="hidden sm:flex gap-5 items-center font-medium h-full">
-          <Link href={"/"}>Link 1</Link>
-          <Link href={"/"}>Link 1</Link>
-          <Link href={"/"}>Link 1</Link>
+          <Link href={"/"}>Add Manufacturer</Link>
+          <Link href={"/"}>Add Product</Link>
           <WalletSelector />
         </div>
         <div className="transition-all inline sm:hidden cursor-pointer" onClick={() => setToggle(!toggle)}>
@@ -27,9 +26,8 @@ const Navbar = () => {
           toggle ? "h-fit border-b border-zinc-700 py-5 font-medium" : "h-0"
         }`}
       >
-        <Link href={"/"}>Link 1</Link>
-        <Link href={"/"}>Link 1</Link>
-        <Link href={"/"}>Link 1</Link>
+        <Link href={"/"}>Add Manufacturer</Link>
+        <Link href={"/"}>Add Product</Link>
         <div>
           <WalletSelector />
         </div>

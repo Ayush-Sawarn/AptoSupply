@@ -2,6 +2,7 @@ import React from "react";
 import data from "@/lib/data.json";
 import ManufacturerHeader from "@/components/ManufacturerHeader.tsx";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Button } from "@/components/ui/button.tsx";
 
 // TODO: GenerateStaticParams for when data is fetched
 export async function generateStaticParams() {
@@ -32,6 +33,7 @@ const ManufacturerPage = ({ params }: { params: { id: string } }) => {
               <TableHead>Status</TableHead>
               <TableHead>Method</TableHead>
               <TableHead className="text-right">Amount</TableHead>
+              <TableHead></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -41,6 +43,9 @@ const ManufacturerPage = ({ params }: { params: { id: string } }) => {
                 <TableCell>Paid</TableCell>
                 <TableCell>Credit Card</TableCell>
                 <TableCell className="text-right">$250.00</TableCell>
+                <TableCell className="text-right">
+                  <Button className="bg-zinc-200 text-zinc-900 hover:bg-zinc-400">Purchase</Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
