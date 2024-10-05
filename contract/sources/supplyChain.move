@@ -30,12 +30,12 @@
             manufacturers: vector<address>,
         }
         public fun init_all_manufacturers(account: &signer) {
-            assert!(!exists<AllManufacturers>(0x1), 1);  // If already initialized, return error 1
+            assert!(!exists<AllManufacturers>(@0x1), 1);  // If already initialized, return error 1
             move_to(account, AllManufacturers {
                 manufacturers: vector::empty<address>(),
             });
         }
-        public fun init_manufacturer(account: &signer, manufacturer_name: String) {
+        public fun init_manufacturer(account: &signer, manufacturer_name: String)acquires AllManufacturers {
             let address = signer::address_of(account);
             assert!(!exists<Manufacturer>(address), 2); // Manufacturer already exists
             
@@ -43,7 +43,7 @@
                 account: address,  
                 name: manufacturer_name  
             });
-            let global_manufacturers = borrow_global_mut<AllManufacturers>(0x1);
+            let global_manufacturers = borrow_global_mut<AllManufacturers>(@0x1);
             vector::push_back(&mut global_manufacturers.manufacturers, address);
 
             // Initialize their product list
