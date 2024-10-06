@@ -12,10 +12,12 @@ export function Header() {
         width={1080}
         className="absolute top-0 left-0 w-full h-full object-cover -z-10 rounded-xl rotate-180 opacity-25"
       />
-      <div className="text-4xl md:text-5xl font-bold leading-normal md:leading-normal">Short line about the brand</div>
-      <div className="text-base font-normal max-w-screen-sm">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto consequuntur enim facere hic laboriosam?
-        Dicta eaque excepturi, recusandae totam ut velit voluptates!
+      <div className="text-4xl md:text-5xl font-bold leading-normal md:leading-normal">
+        AptoSupply: A Supply Chain Management on Blockchain
+      </div>
+      <div className="text-base font-normal max-w-screen-md">
+        A decentralized supply chain management system built on the Aptos blockchain. It allows manufacturers to
+        register and create products, and consumers to view and purchase products securely using blockchain technology.
       </div>
       <div className="mt-5">
         <WalletSelector />

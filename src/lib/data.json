@@ -1,31 +1,31 @@
 [
   {
     "id": "1",
-    "name": "Adidas",
+    "name": "SnTC",
     "desc": "Life's too short for boring code, so I sprinkle a little fun into every function I write",
     "img": "https://cdn.pixabay.com/photo/2017/04/10/15/06/cherry-blossoms-2218781_960_720.jpg"
   },
   {
     "id": "2",
-    "name": "Reebok",
+    "name": "KamandPrompt",
     "desc": "Coffee fuels my creativity, and sometimes my entire personality",
     "img": "https://cdn.pixabay.com/photo/2019/02/24/15/29/light-4017836_960_720.png"
   },
   {
     "id": "3",
-    "name": "Wikipedia",
+    "name": "Designauts",
     "desc": "Debugging is my cardio, running through lines of code burns more calories than running",
     "img": "https://cdn.pixabay.com/photo/2022/02/19/22/48/forest-7023487_960_720.jpg"
   },
   {
     "id": "4",
-    "name": "Skechers",
+    "name": "HydroChain",
     "desc": "Every time I finish something, I realize it’s just the beginning of the next thing",
     "img": "https://cdn.pixabay.com/photo/2023/03/20/06/30/fall-7863868_960_720.jpg"
   },
   {
     "id": "5",
-    "name": "Jaguar",
+    "name": "S.A.C.",
     "desc": "Typing fast makes me feel like a hacker in a movie, even if I’m just writing a grocery list",
     "img": "https://cdn.pixabay.com/photo/2020/03/25/14/57/orbs-4967554_960_720.jpg"
   }
