@@ -4,11 +4,10 @@ version = "1.0.0"
 authors = []
 
 [addresses]
-supplyChain = "0xe4870253e3c7084cad7fc2fdd30dc199a6092e32daef11777ea46a8cb212a439"
+supplyChain = "e4870253e3c7084cad7fc2fdd30dc199a6092e32daef11777ea46a8cb212a439"
 
 [dependencies]
 AptosFramework = { git = "https://github.com/aptos-labs/aptos-core.git", rev = "mainnet", subdir = "aptos-move/framework/aptos-framework" }
 AptosStdlib = { git = "https://github.com/aptos-labs/aptos-core.git", rev = "mainnet", subdir = "aptos-move/framework/aptos-stdlib" }
 
 [dev-dependencies]
-
