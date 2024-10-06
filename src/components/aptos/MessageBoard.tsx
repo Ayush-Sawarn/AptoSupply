@@ -47,7 +47,7 @@ export function MessageBoard() {
     try {
       const committedTransaction = await signAndSubmitTransaction(
         writeMessage({
-          content: newMessageContent,
+          name: newMessageContent,
         }),
       );
       const executedTransaction = await aptosClient().waitForTransaction({

@@ -1,4 +1,4 @@
-module supplyChain :: Product {
+module supply_chain_addr :: supply_chain {
     use std :: option;
     use std :: vector;
     use std::option::Option;
@@ -6,6 +6,10 @@ module supplyChain :: Product {
     use std::string::String;
     use aptos_std::coin::transfer;
     use aptos_framework::aptos_coin::AptosCoin;
+
+    struct Counter has key {
+        value: u64,
+    }
 
     struct Manufacturer has store, key, copy {
         account: address,
@@ -34,14 +38,22 @@ module supplyChain :: Product {
         manufacturers: vector<address>,
     }
 
-    public fun init_all_manufacturers(account: &signer) {
-        assert!(!exists<AllManufacturers>(@0x1), 1);  // If already initialized, return error 1
-        move_to(account, AllManufacturers {
-            manufacturers: vector::empty<address>(),
-        });
+    public entry fun init_all_manufacturers(account: &signer) {
+        if (!exists<AllManufacturers>(@0x1)) {
+            // If already initialized, return error 1
+            move_to(account, AllManufacturers {
+                manufacturers: vector::empty<address>(),
+            });
+        }
     }
 
-    public fun init_manufacturer(account: &signer, manufacturer_name: String) acquires AllManufacturers {
+    #[view]
+    public fun test(): u64 {
+        let i: u64 = 42;
+        i
+    }
+
+    public entry fun init_manufacturer(account: &signer, manufacturer_name: String) acquires AllManufacturers {
         let address = signer::address_of(account);
         assert!(!exists<Manufacturer>(address), 2); // Manufacturer already exists
 
@@ -56,13 +68,19 @@ module supplyChain :: Product {
         init_manufacturer_products(account);
     }
 
-    public fun init_manufacturer_products(account: &signer) {
+    public entry fun init_manufacturer_products(account: &signer) {
         move_to(account, ManufacturerProducts {
             products: vector :: empty<Product>(),
         });
     }
 
-    public fun create_product(
+    #[view]
+    public fun get_all_manufacturers(): vector<address> acquires AllManufacturers {
+        let global_manufacturers = borrow_global<AllManufacturers>(@0x1);
+        global_manufacturers.manufacturers // Return the manufacturers vector directly
+    }
+
+    public entry fun create_product(
         account: &signer,
         product_id: u64,
         product_name: String,
@@ -83,6 +101,7 @@ module supplyChain :: Product {
         vector::push_back(&mut manufacturer_products.products, new_product);
     }
 
+    #[view]
     public fun get_product(
         manufacturer_address: address,
         product_id: u64
@@ -110,7 +129,7 @@ module supplyChain :: Product {
         option::none()
     }
 
-    public fun purchase_product(
+    public entry fun purchase_product(
         account: &signer,
         manufacturer_address: address,
         product_id: u64,

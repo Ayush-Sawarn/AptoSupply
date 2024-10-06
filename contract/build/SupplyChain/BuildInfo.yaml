@@ -1,6 +1,6 @@
 ---
 compiled_package_info:
-  package_name: supplyChain
+  package_name: SupplyChain
   address_alias_instantiation:
     Extensions: "0000000000000000000000000000000000000000000000000000000000000001"
     aptos_framework: "0000000000000000000000000000000000000000000000000000000000000001"
@@ -9,10 +9,10 @@ compiled_package_info:
     aptos_token: "0000000000000000000000000000000000000000000000000000000000000003"
     core_resources: 000000000000000000000000000000000000000000000000000000000a550c18
     std: "0000000000000000000000000000000000000000000000000000000000000001"
-    supplyChain: e4870253e3c7084cad7fc2fdd30dc199a6092e32daef11777ea46a8cb212a439
+    supply_chain_addr: 08dc0de8650bb449df9d4f1860dc2e42f0a35a8548bd0e83c5ec7e6aab198d20
     vm: "0000000000000000000000000000000000000000000000000000000000000000"
     vm_reserved: "0000000000000000000000000000000000000000000000000000000000000000"
-  source_digest: BD355883985441DC5B3A0163D0CD568A7BEE479E487E0D45C5B5DF982098960A
+  source_digest: 961ADCE1732A24B2D53FFC4861B038B65D04079B5F58525E0E16FC8CF5837EA8
   build_flags:
     dev_mode: false
     test_mode: false
@@ -23,7 +23,8 @@ compiled_package_info:
     full_model_generation: false
     install_dir: ~
     force_recompilation: false
-    additional_named_addresses: {}
+    additional_named_addresses:
+      supply_chain_addr: 08dc0de8650bb449df9d4f1860dc2e42f0a35a8548bd0e83c5ec7e6aab198d20
     architecture: ~
     fetch_deps_only: false
     skip_fetch_latest_git_deps: false

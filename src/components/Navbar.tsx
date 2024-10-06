@@ -46,6 +46,12 @@ const Navbar = () => {
                     disabled={connected}
                     value={account?.address}
                   />
+                  <Label className="pt-3">Manufacturer Name</Label>
+                  <Input
+                    className="bg-zinc-900 text-zinc-100"
+                    placeholder={"Manufacturer Name"}
+                    disabled={!connected}
+                  />
                   <div>
                     <Button className="bg-zinc-800 hover:bg-zinc-700 mt-3 w-full">Submit</Button>
                   </div>
@@ -111,6 +117,12 @@ const Navbar = () => {
                     placeholder={"Manufacturer Address"}
                     disabled={connected}
                     value={account?.address}
+                  />
+                  <Label className="pt-3">Manufacturer Name</Label>
+                  <Input
+                    className="bg-zinc-900 text-zinc-100"
+                    placeholder={"Manufacturer Name"}
+                    disabled={!connected}
                   />
                   <div>
                     <Button className="bg-zinc-800 hover:bg-zinc-700 mt-3 w-full">Submit</Button>
