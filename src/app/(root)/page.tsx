@@ -18,7 +18,6 @@ import { addManufacturer } from "@/entry-functions/addManufacturer.ts";
 function App() {
   const queryClient = useQueryClient();
   const { account, signAndSubmitTransaction } = useWallet();
-  const [num, setNum] = useState("initial");
 
   const [manufacturerData, setManufacturerData] = useState<string | null>(null);
 
@@ -57,7 +56,7 @@ function App() {
     try {
       const committedTransaction = await signAndSubmitTransaction(
         addManufacturer({
-          manufacturer_name: "New manufacturer",
+          manufacturer_name: "manufacturer",
         }),
       );
       const executedTransaction = await aptosClient().waitForTransaction({
@@ -103,7 +102,6 @@ function App() {
           ))}
         </div>
       </div>
-      <div className="hidden lg:block col-span-3 bg-zinc-300 p-5 rounded-lg">Something uninmportant</div>
     </>
   );
 }

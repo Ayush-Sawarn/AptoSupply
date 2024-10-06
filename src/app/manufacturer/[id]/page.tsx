@@ -51,7 +51,6 @@ const ManufacturerPage = ({ params }: { params: { id: string } }) => {
           </TableBody>
         </Table>
       </div>
-      <div className="hidden lg:block col-span-3 bg-zinc-300 p-5 rounded-lg">Something uninmportant</div>
     </div>
   );
 };

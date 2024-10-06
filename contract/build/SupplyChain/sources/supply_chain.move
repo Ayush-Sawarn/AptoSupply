@@ -39,7 +39,7 @@ module supply_chain_addr :: supply_chain {
     }
 
     public entry fun init_all_manufacturers(account: &signer) {
-        if (!exists<AllManufacturers>(@0x1)) {
+        if (!exists<AllManufacturers>(@0x123)) {
             // If already initialized, return error 1
             move_to(account, AllManufacturers {
                 manufacturers: vector::empty<address>(),
@@ -61,7 +61,7 @@ module supply_chain_addr :: supply_chain {
             account: address,
             name: manufacturer_name
         });
-        let global_manufacturers = borrow_global_mut<AllManufacturers>(@0x1);
+        let global_manufacturers = borrow_global_mut<AllManufacturers>(@0x123);
         vector::push_back(&mut global_manufacturers.manufacturers, address);
 
         // Initialize their product list
@@ -76,7 +76,9 @@ module supply_chain_addr :: supply_chain {
 
     #[view]
     public fun get_all_manufacturers(): vector<address> acquires AllManufacturers {
-        let global_manufacturers = borrow_global<AllManufacturers>(@0x1);
+        let global_manufacturers = borrow_global<AllManufacturers>(
+            @0x123
+        );
         global_manufacturers.manufacturers // Return the manufacturers vector directly
     }
 
