@@ -41,8 +41,8 @@ const ManufacturerPage = ({ params }: { params: { id: string } }) => {
               <TableRow key={data}>
                 <TableCell className="font-medium">{`INV00${data}`}</TableCell>
                 <TableCell>Paid</TableCell>
-                <TableCell>Credit Card</TableCell>
-                <TableCell className="text-right">$250.00</TableCell>
+                <TableCell>{Math.floor(Math.random() * 2) == 0 ? "Petra Wallet" : "Welldone Wallet"}</TableCell>
+                <TableCell className="text-right">{`${Math.random() * 2} APT`}</TableCell>
                 <TableCell className="text-right">
                   <Button className="bg-zinc-200 text-zinc-900 hover:bg-zinc-400">Purchase</Button>
                 </TableCell>

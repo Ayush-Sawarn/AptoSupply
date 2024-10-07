@@ -39,7 +39,7 @@ module supply_chain_addr :: supply_chain {
     }
 
     public entry fun init_all_manufacturers(account: &signer) {
-        if (!exists<AllManufacturers>(@0x123)) {
+        if (!exists<AllManufacturers>(@supply_chain_addr)) {
             // If already initialized, return error 1
             move_to(account, AllManufacturers {
                 manufacturers: vector::empty<address>(),
@@ -54,6 +54,7 @@ module supply_chain_addr :: supply_chain {
     }
 
     public entry fun init_manufacturer(account: &signer, manufacturer_name: String) acquires AllManufacturers {
+
         let address = signer::address_of(account);
         assert!(!exists<Manufacturer>(address), 2); // Manufacturer already exists
 
@@ -61,7 +62,7 @@ module supply_chain_addr :: supply_chain {
             account: address,
             name: manufacturer_name
         });
-        let global_manufacturers = borrow_global_mut<AllManufacturers>(@0x123);
+        let global_manufacturers = borrow_global_mut<AllManufacturers>(@supply_chain_addr);
         vector::push_back(&mut global_manufacturers.manufacturers, address);
 
         // Initialize their product list
@@ -77,7 +78,7 @@ module supply_chain_addr :: supply_chain {
     #[view]
     public fun get_all_manufacturers(): vector<address> acquires AllManufacturers {
         let global_manufacturers = borrow_global<AllManufacturers>(
-            @0x123
+            @supply_chain_addr
         );
         global_manufacturers.manufacturers // Return the manufacturers vector directly
     }
@@ -96,8 +97,8 @@ module supply_chain_addr :: supply_chain {
             id: product_id,
             name: product_name,
             manufacturer: manufacturer_address,
-            batch_number: batch_number,
-            manufacture_date: manufacture_date,
+            batch_number,
+            manufacture_date,
             price: product_price,
         };
         vector::push_back(&mut manufacturer_products.products, new_product);
