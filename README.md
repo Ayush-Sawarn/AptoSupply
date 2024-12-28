@@ -41,7 +41,7 @@ This project is a decentralized supply chain management system built on the Apto
 1. **Clone the Repository**:
     ```bash
     git clone <repository-url>
-    cd supply-chain-aptos
+    cd aptos-hackathon
     ```
 
 2. **Compile the Move Contracts**:
