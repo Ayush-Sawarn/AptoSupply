@@ -92,37 +92,6 @@ Once deployed, you can interact with the contract by calling the various functio
     aptos move run --function-id '<deployed_address>::supplyChain::Product::get_all_manufacturers'
     ```
 
-## Example Workflow
-
-1. **Initialize the Global Manufacturer List**:
-    The first step is to initialize the global manufacturer list, which is done only once:
-    ```bash
-    aptos move run --function-id '<deployed_address>::supplyChain::Product::init_all_manufacturers'
-    ```
-
-2. **Register a Manufacturer**:
-    After the global list is initialized, manufacturers can register by providing their account and name:
-    ```bash
-    aptos move run --function-id '<deployed_address>::supplyChain::Product::init_manufacturer' --args '<manufacturer_name>'
-    ```
-
-3. **Create a Product**:
-    Once registered, manufacturers can create products:
-    ```bash
-    aptos move run --function-id '<deployed_address>::supplyChain::Product::create_product' --args <product_id> <product_name> <batch_number> <manufacture_date> <price>
-    ```
-
-4. **Purchase a Product**:
-    Consumers can purchase a product by sending AptosCoin to the manufacturer's account:
-    ```bash
-    aptos move run --function-id '<deployed_address>::supplyChain::Product::purchase_product' --args <manufacturer_address> <product_id>
-    ```
-
-5. **Retrieve Manufacturer List**:
-    To view the list of all manufacturers:
-    ```bash
-    aptos move run --function-id '<deployed_address>::supplyChain::Product::get_all_manufacturers'
-    ```
 
 ## Error Codes
 
