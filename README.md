@@ -3,6 +3,7 @@
 ## Overview
 
 This project is a decentralized supply chain management system built on the Aptos blockchain. It allows manufacturers to register and create products, and consumers to view and purchase products securely using blockchain technology. The smart contract manages product creation, listing, and purchasing, ensuring transparency and immutability. Additionally, it tracks all registered manufacturers and their products in a global, decentralized manner.
+![Screenshot 1](screenshot/Screenshot-1.png)
 
 ### Key Features
 - **Manufacturer Registration**: Manufacturers can register on the platform by providing an account and a name.
@@ -10,6 +11,7 @@ This project is a decentralized supply chain management system built on the Apto
 - **Global Manufacturer List**: A global list of manufacturers is maintained on the blockchain and is accessible by all users.
 - **Product Purchase**: Consumers can purchase products from manufacturers using AptosCoin, with the transaction securely handled on-chain.
 - **Immutable Records**: All product and manufacturer information is stored immutably on the blockchain.
+![Screenshot 2](screenshot/Screenshot-2.png)
 
 ## Smart Contract Details
 
@@ -27,6 +29,7 @@ This project is a decentralized supply chain management system built on the Apto
 - **`get_all_manufacturers(): vector<address>`**: Retrieves a list of all registered manufacturers.
 - **`get_product(manufacturer_address: address, product_id: u64): Option<Product>`**: Retrieves the details of a specific product from a manufacturer.
 - **`purchase_product(account: &signer, manufacturer_address: address, product_id: u64)`**: Allows a consumer to purchase a product from a manufacturer by transferring the specified amount of AptosCoin.
+![Screenshot 3](screenshot/Screenshot-3.png)
 
 ## Usage
 
